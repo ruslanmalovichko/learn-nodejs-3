@@ -7,7 +7,7 @@ function logCar(car, callback){
   }
 }
 function logCars(cars){
-  var car = cars.pop();
+  var car = cars.pop(); // car gets last element. cars removes last element
   logCar(car, function(){
     logCars(cars);
   });
