@@ -1,4 +1,5 @@
-bufUTF8 = new Buffer("Some UTF8 Text \u00b6 \u30c6 \u20ac", 'utf8');
+// bufUTF8 = new Buffer("Some UTF8 Text \u00b6 \u30c6 \u20ac", 'utf8');
+bufUTF8 = new Buffer.from("Some UTF8 Text \u00b6 \u30c6 \u20ac", 'utf8');
 console.log(bufUTF8.toString());
 console.log(bufUTF8.toString('utf8', 5, 9));
 var StringDecoder = require('string_decoder').StringDecoder;

@@ -1,4 +1,4 @@
-var numbers = new Buffer("123456789");
+var numbers = new Buffer.from("123456789");
 console.log(numbers.toString());
 var slice = numbers.slice(3, 6);
 console.log(slice.toString());
