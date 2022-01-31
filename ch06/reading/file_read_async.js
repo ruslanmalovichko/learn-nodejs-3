@@ -1,6 +1,6 @@
 var fs = require('fs');
 function readFruit(fd, fruits){
-  var buf = new Buffer(5);
+  var buf = new Buffer.alloc(5);
   buf.fill();
   fs.read(fd, buf, 0, 5, null, function(err, bytes, data){
       if ( bytes > 0) {
