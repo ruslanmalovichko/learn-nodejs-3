@@ -25,5 +25,8 @@ wordSchema.methods.startsWith = function(letter){
 console.log('Indexes: ');
 console.log(wordSchema.indexes());
 
+console.log('Required: ');
+console.log(wordSchema.requiredPaths());
+
 export default model('Words', wordSchema);
 
