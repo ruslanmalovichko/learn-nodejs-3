@@ -5,7 +5,6 @@ const options = { collection: 'word_stats', timestamps: true };
 
 const wordSchema = new Schema({
   word: {type: String, index: true, required:true, unique: true},
-  // word: {type: Number, index: true, required:true, unique: true},
   first: {type: String, index: true},
   last: String,
   size: Number,
@@ -19,6 +18,12 @@ const wordSchema = new Schema({
 wordSchema.methods.startsWith = function(letter){
   return this.first === letter;
 };
+
+// wordSchema.index({word:1});
+// wordSchema.index({first:1});
+
+console.log('Indexes: ');
+console.log(wordSchema.indexes());
 
 export default model('Words', wordSchema);
 

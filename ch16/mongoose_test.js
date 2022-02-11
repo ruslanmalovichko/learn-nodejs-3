@@ -11,10 +11,15 @@ async function main() {
   const options = { collection: 'kittens', timestamps: true };
 
   const kittySchema = new Schema({
-    name: String
+    name: {type: String, index: true}
   },
     options
   );
+
+  // kittySchema.index({name: 1});
+
+  console.log('Indexes: ');
+  console.log(kittySchema.indexes());
 
   kittySchema.methods.speak = function speak() {
     const greeting = this.name
