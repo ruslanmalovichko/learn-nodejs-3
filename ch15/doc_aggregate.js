@@ -61,6 +61,12 @@ async function main() {
   );
 
   results = await collection.updateMany(
+    {type:'words',word: 'aruslan2o', size: 9, last: 'u', first: 'a', stats: {vowels: 4, consonants: 4}},
+    {$set:{type:'words',word: 'aruslan2o', size: 9, last: 'u', first: 'a', stats: {vowels: 4, consonants: 4}}},
+    {upsert:true}
+  );
+
+  results = await collection.updateMany(
     {type:'words',word: 'aruslan2', size: 8, last: 'u', first: 'a', stats: {vowels: 4, consonants: 4}},
     {$set:{type:'words',word: 'aruslan2', size: 8, last: 'u', first: 'a', stats: {vowels: 4, consonants: 4}}},
     {upsert:true}
