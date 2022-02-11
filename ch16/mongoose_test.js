@@ -8,9 +8,13 @@ async function main() {
   // await conn.dropCollection('kittens');
 
   await mongoose.connect('mongodb://localhost:27017/test');
+  const options = { collection: 'kittens', timestamps: true };
+
   const kittySchema = new Schema({
     name: String
-  });
+  },
+    options
+  );
 
   kittySchema.methods.speak = function speak() {
     const greeting = this.name
