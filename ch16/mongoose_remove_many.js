@@ -1,24 +1,26 @@
-var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/words');
-var wordSchema = require('./word_schema.js').wordSchema;
-var Words = mongoose.model('Words', wordSchema);
-mongoose.connection.once('open', function(){
-  Words.find({word:/grat.*/}, function(err, docs){
-    console.log("Before delete: ");
-    for (var i in docs){
-      console.log(docs[i].word);
-    }
-    var query = Words.remove();
-    query.where('word').regex(/grati.*/);
-    query.exec(function(err, results){
-      console.log("\n%d Documents Deleted.", results);
-      Words.find({word:/grat.*/}, function(err, docs){
-        console.log("\nAfter delete: ");
-        for (var i in docs){
-          console.log(docs[i].word);
-        }
-        mongoose.disconnect();
-      });
-    });
-  });
-});
+import mongoose from 'mongoose';
+
+import Words from './models/words.js';
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://localhost:27017/words');
+  let docs;
+  docs = await Words.find({word:/grat.*/});
+  console.log("Before delete: ");
+  for (let i in docs){
+    console.log(docs[i].word);
+  }
+  const filter = { word: { $regex: /grati.*/ } };
+  let results = await Words.deleteMany(filter);
+  console.log("\n%d Documents Deleted.", results.deletedCount);
+  docs = await Words.find({word:/grat.*/});
+  console.log("\nAfter delete: ");
+  for (let i in docs) {
+    console.log(docs[i].word);
+  }
+
+  await mongoose.disconnect();
+}
+
