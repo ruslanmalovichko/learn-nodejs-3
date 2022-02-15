@@ -4,7 +4,26 @@ const Mixed = Schema.Types.Mixed;
 const options = { collection: 'word_stats', timestamps: true };
 
 const wordSchema = new Schema({
-  word: {type: String, index: true, required:true, unique: true},
+  word: {
+    type: String,
+    index: true,
+    required:true,
+    unique: true,
+    validate: [
+      {
+        validator: function(value) {
+          return value.length > 0;
+        },
+        msg: 'Word is Too Small'
+      },
+      {
+        validator: function(value) {
+          return value.length < 20;
+        },
+        msg: 'Word is Too Big'
+      }
+    ]
+  },
   first: {type: String, index: true},
   last: String,
   size: Number,
