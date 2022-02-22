@@ -1,7 +1,9 @@
-var express = require('express'),
-    pug = require('pug'),
-    ejs = require('ejs');
-var app = express();
+import express from 'express';
+import pug from 'pug';
+import ejs from 'ejs';
+
+let app = express();
+
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.engine('pug', pug.__express);
@@ -16,6 +18,7 @@ app.get('/pug', function (req, res) {
 });
 app.get('/ejs', function (req, res) {
   app.render('user_ejs.html', function(err, renderedData){
-    res.send(renderedData);    
+    res.send(renderedData);
   });
 });
+
