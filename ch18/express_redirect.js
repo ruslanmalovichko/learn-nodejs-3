@@ -1,7 +1,9 @@
-var express = require('express');
-var url = require('url');
-var app = express();
+import express from 'express';
+
+let app = express();
+
 app.listen(80);
+
 app.get('/google', function (req, res) {
   res.redirect('http://google.com');
 });
@@ -17,3 +19,4 @@ app.get('/level/A', function (req, res) {
 app.get('/level/B', function (req, res) {
   res.send("Response from Level B");
 });
+
