@@ -1,17 +1,21 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+import express from 'express';
+import bodyParser from 'body-parser';
+
+let app = express();
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.get('/', function (req, res) {
-  var response = '<form method="POST">' +
+  let response = '<form method="POST">' +
         'First: <input type="text" name="first"><br>' +
         'Last: <input type="text" name="last"><br>' +
         '<input type="submit" value="Submit"></form>';
   res.send(response);
 });
+
 app.post('/',function(req, res){
-  var response = '<form method="POST">' +
+  let response = '<form method="POST">' +
         'First: <input type="text" name="first"><br>' +
         'Last: <input type="text" name="last"><br>' +
         '<input type="submit" value="Submit"></form>' +
@@ -20,4 +24,6 @@ app.post('/',function(req, res){
   res.end(response);
   console.log(req.body);
 });
+
 app.listen(80);
+
